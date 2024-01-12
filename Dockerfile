@@ -1,6 +1,7 @@
 FROM docker.io/aquasec/trivy
 
-RUN trivy image --download-db-only --download-java-db-only
+RUN trivy image --download-db-only
+RUN trivy image --download-java-db-only
 
 # An external OCI registry can be specified using the --db-repository
 # and --java-db-repository options.  For example:
