@@ -44,8 +44,8 @@ jobs:
       - name: Check Trivy upstream for update
         id: upstream
         run: |
-          TRIVY_OFFLINE_VERSION=$(docker run ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest | grep "^Version")
-          TRIVY_VERSION=$(docker run ${{ env.REGISTRY }}/aquasec/trivy:latest | grep "^Version")
+          TRIVY_OFFLINE_VERSION=$(docker run ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest --version | grep "^Version")
+          TRIVY_VERSION=$(docker run ${{ env.REGISTRY }}/aquasec/trivy:latest --version | grep "^Version")
           echo "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest => $TRIVY_OFFLINE_VERSION"
           echo "${{ env.REGISTRY }}/aquasec/trivy:latest => $TRIVY_VERSION"
           if [[ "$TRIVY_OFFLINE_VERSION" == "$TRIVY_VERSION" ]]
